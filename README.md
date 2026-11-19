@@ -1,41 +1,41 @@
-# 🪐 Gaurav Sahib | AI Compiler & GPU Systems Architect
+# 🪐 Gaurav Sahib | GPU Kernel & AI Systems Engineer
 
-I operate at the boundary layer between deep learning graphs and bare-metal silicon physics. My engineering focus is entirely dedicated to bypassing framework overheads (Python GIL, Eager execution, and graph breaks) to force maximum performance directly out of high-performance GPU clusters.
-
----
-
-## ⚡ Core Operational Stack
-- **AI Compilers & DSLs:** Meta Helion DSL (`hl.tile` structural abstractions, AOT Bayesian tuning engines), OpenAI Triton (manual pointer strides & masks).
-- **Distributed Inference Serving:** vLLM (`PagedAttention v2` block management), SGLang (`RadixAttention` dynamic prefix cache routing).
-- **OS-Bypass & Telemetry Probes:** UCX (Unified Communication X for remote DMA paths), Linux `eBPF / bcc` custom network kernel telemetry tracking hooks.
+Operating at the boundary layer between deep learning graphs and bare-metal silicon physics, focusing on bypassing framework overheads using **CUDA C++**, **PTX/SASS**, **OpenAI Triton**, and **AI Compilers**.
 
 ---
 
-## 🛠️ Active Hardware Engineering Repositories (Phase 1 Target)
+## ⚡ Core Technical Stack
 
-### 🧮 [1. Helion-Triton Kernel Optimization Suite](https://github.com)
-*An automated benchmarking harness comparing Meta Helion JIT graph compiler outputs against hand-written OpenAI Triton pointer arithmetic kernels across identical matrix architectures.*
-
-| Metric Profile | Native PyTorch Eager (cuBLAS) | Handwritten Triton Kernel | Meta Helion DSL Compiler |
-| :--- | :--- | :--- | :--- |
-| **Arithmetic Intensity** | Peak Hardware Standard | Compute-Bound (92% Speed) | Compute-Bound (94% Speed) |
-| **Shared Memory Conflicts** | 0 Bank Collisions Verified | **0 Bank Conflicts (Nsight)** | **0 Bank Conflicts (Automated)** |
-| **JIT Compilation Cost** | Strict Zero Line | ~2.4 Seconds (Initial) | ~14.8 Minutes (Bayesian Tuning) |
-| **Steady-State Latency** | Baseline Reference Scale | 1.05x Speedup Over cuBLAS | 1.12x Speedup Over cuBLAS |
-
-#### 🚀 Key Implementations Fused Inside:
-- **Tiled GEMM Core:** General Matrix Multiplication broken down into structural micro-tiles to overcome physical HBM3/HBM4 bandwidth barriers.
-- **Online Outlier-Aware Quantization:** Dynamic screening tracking elements routing high-magnitude activation outliers directly into an unquantized FP16 bypass line while compacting 99% of data maps over FP4 primitives.
-- **MLA Absorption Engine:** Fusing Query matrix transformations inside runtime Key/Value matrices to enforce low-rank matrix alignments (DeepSeek R1/V3 scale).
+- **Low-Level GPU & Systems:** C++20 (`CMake + Ninja`), CUDA C++, PTX / SASS Inspection, NVIDIA CUTLASS / CuTe (In Progress).
+- **AI Compilers & DSLs:** OpenAI Triton (manual pointer strides, L2 cache swizzling & autotuning), Meta Helion DSL.
+- **Hardware Profiling & Telemetry:** NVIDIA Nsight Compute (`ncu`) & Nsight Systems (`nsys`).
+- **Distributed Inference Engines:** vLLM (`PagedAttention`), SGLang (`RadixAttention`).
 
 ---
 
-## 📊 Live System Performance Metrics Tracking
+## 🛠 Verified Repositories & Hardware Benchmarks
 
-[PyTorch FX Graph Capture] ──► [Helion Intermediate Repos Lowering] ──► [Triton IR CodeGen]
-│
-▼
-[Nsight Compute SASS Trace] ◄─── [Zero Bank Conflict Execution] ◄─── [Physical GPU Registers]
+### 1. [triton-gpu-kernel](https://github.com) — Custom Triton Kernels & Nsight Silicon Profiling
+Hand-written OpenAI Triton kernels profiled on NVIDIA Turing silicon (GTX 1650, TU117, 4GB GDDR5) using `ncu` and `nsys`:
+- **Vector Addition Memory Squeeze:** Saturated physical DRAM bandwidth at **146.1 GB/s**.
+- **2D Block-Tiled & L2-Swizzled FP16 GEMM (`2048x2048`):**
+  - **PyTorch cuBLAS Baseline:** `54.35 ms` (`0.32 TFLOPS`)
+  - **Custom Triton Tiled GEMM:** `28.89 ms` (`0.59 TFLOPS`) — **1.88x Speedup over cuBLAS**
+  - **Custom Triton L2-Swizzled GEMM:** `31.78 ms` (`0.54 TFLOPS`) — **1.71x Speedup over cuBLAS**
+- **Nsight Compute (`ncu`) Diagnosis:** Achieved **76.17% Memory Speed-of-Light** and **45.36% L2 Cache Throughput**.
 
-- 📉 **Target Objective:** Drop total multi-node cluster computational expenditures by flat **50% to 90%** via pure software optimizations.
-- 🔗 **Connection Pipeline:** Reach out via [LinkedIn](https://www.linkedin.com/in/gaurav-sahib-635136339/) for core contract reviews, architecture deep-dives, or performance benchmarking tracks.
+---
+
+## 🎯 Active Engineering Sprint & Target Architecture (In Progress)
+
+Executing an engineering sprint targeting modern LLM inference bottlenecks:
+- **CUDA C++20 & CuTe Foundations:** Zero-copy strided tensor layouts, 64-byte aligned memory arenas, and register-tiled GEMM kernels.
+- **MLA Absorption Engine & FP4 Quantization:** Fusing Query projections into compressed Key/Value latent spaces and routing activation outliers into FP16 bypass paths with **0 Shared Memory Bank Conflicts**.
+
+---
+
+## 🔗 Connect & Collaborate
+
+- **GitHub:** [@kaintsahib](https://github.com/kaintsahib)
+- **LinkedIn:** [gaurav-sahib-635136339]
+- **X (Twitter):** [https://x.com/KaintSahib_7866]
