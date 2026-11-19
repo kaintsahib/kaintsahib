@@ -37,5 +37,5 @@ Executing an engineering sprint targeting modern LLM inference bottlenecks:
 ## 🔗 Connect & Collaborate
 
 - **GitHub:** [@kaintsahib](https://github.com/kaintsahib)
-- **LinkedIn:** [gaurav-sahib-635136339]
+- **LinkedIn:** [https://www.linkedin.com/in/gaurav-sahib-635136339/]
 - **X (Twitter):** [https://x.com/KaintSahib_7866]
